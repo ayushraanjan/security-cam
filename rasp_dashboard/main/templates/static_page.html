@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Reports - Camera Monitoring Dashboard</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Main Section Styling */
+        .incident-reports {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .incident {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #007bff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .incident:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .incident h3 {
+            font-size: 1.5em;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        .incident p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .incident a {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .incident a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for the highlighted incident */
+        .main-incident {
+            background-color: #f1f3f5;
+            border-left: 8px solid #ff9800;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .main-incident h3 {
+            color: #ff9800;
+        }
+
+        .main-incident a {
+            background-color: #ff9800;
+        }
+
+        .main-incident a:hover {
+            background-color: #e68a00;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- MAIN CONTENT -->
+    <section class="incident-reports">
+        <!-- Highlighted Incident Report -->
+        <div class="incident main-incident">
+            <h3>Incident ID: 00123</h3>
+            <p><strong>Date:</strong> 2024-10-01</p>
+            <p><strong>Location:</strong> Bakhtiyarpur College Of Engineering, Dedaur</p>
+            <p><strong>Description:</strong> Triggered by help gesture</p>
+            <a href="http://192.168.137.92:8080/video_feed">See Live Camera Feed</a>
+        </div>
+
+        <!-- Regular Incident Report -->
+        <div class="incident">
+            <h3>Incident ID: 00122</h3>
+            <p><strong>Date:</strong> 2024-10-07</p>
+            <p><strong>Location:</strong> Kankarbagh, Patna</p>
+            <p><strong>Description:</strong> Triggered from camera 1</p>
+            <a href="/live-camera-feed/">See Recorded</a>
+        </div>
+
+        <!-- Another Regular Incident Report -->
+        <div class="incident">
+            <h3>Incident ID: 00121</h3>
+            <p><strong>Date:</strong> 2024-10-08</p>
+            <p><strong>Location:</strong> Kankarbagh, Patna</p>
+            <p><strong>Description:</strong> Triggered from camera 1</p>
+            <a href="/live-camera-feed/">See Recorded</a>
+        </div>
+    </section>
+
+</body>
+</html>

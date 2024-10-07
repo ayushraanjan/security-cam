@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Monitoring Dashboard</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f6f9;
+        }
+
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+        }
+
+        /* Flexbox for logo and title */
+        .logo-container {
+            display: flex; /* Use Flexbox */
+            align-items: center; /* Vertically center the logo and text */
+        }
+
+        .logo-container img {
+            width: 60px; /* Adjust the width of the logo */
+            margin-right: 20px; /* Space between logo and text */
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            text-align: center;
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            color: #343a40;
+        }
+
+        .card p {
+            font-size: 2.5em;
+            color: #007bff;
+        }
+
+        /* Camera Status Styles */
+        .camera-status {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .camera-status h2 {
+            margin-bottom: 20px;
+        }
+
+        .camera-list {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .camera {
+            width: 30%;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .camera h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .camera p {
+            font-size: 1em;
+        }
+
+        .live {
+            color: green;
+        }
+
+        .idle {
+            color: orange;
+        }
+
+        .down {
+            color: red;
+        }
+
+        /* Incident Alerts Section */
+        .incidents {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .incidents h2 {
+            margin-bottom: 20px;
+        }
+
+        .incident {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px; /* Space between incidents */
+            border-left: 5px solid #007bff; /* Blue left border for incidents */
+            display: flex; /* Use Flexbox for the incident container */
+            justify-content: space-between; /* Space between content */
+            align-items: center; /* Center items vertically */
+        }
+
+        .incident h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .incident p {
+            font-size: 1em;
+            color: #555;
+            flex-grow: 1; /* Allow paragraph to take up remaining space */
+        }
+
+        /* Live Camera Feed Link */
+        .live-camera-feed {
+            background-color: red; /* Red background */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none; /* Remove underline */
+            display: inline-block; /* Make it inline element */
+            vertical-align: top; /* Align to the top */
+        }
+
+        .live-camera-feed:hover {
+            background-color: darkred; /* Darker red on hover */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function checkEvent() {
+            fetch('/check-event-status/')
+            .then(response => response.json())
+            .then(data => {
+                if (data.event_triggered) {
+                    // Redirect to the new page if the event is triggered
+                    window.location.href = '/incident123/';
+                }
+            })
+            .catch(error => console.log('Error checking event status:', error));
+        }
+
+        // Poll the server every 3 seconds to check if an event is triggered
+        setInterval(checkEvent, 3000);
+    </script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ab/Logo_of_Bihar_Police_%28India%29.svg/1024px-Logo_of_Bihar_Police_%28India%29.svg.png" alt="Bihar Police Logo">
+            <h1>Camera Monitoring Dashboard</h1>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="stats">
+            <div class="card">
+                <h2>Active Cameras</h2>
+                <p>1</p> <!-- Dynamic data for active cameras -->
+            </div>
+            <div class="card">
+                <h2>Incidents Recorded</h2>
+                <p>2</p> <!-- Dynamic data for incidents recorded -->
+            </div>
+        </section>
+
+        <!-- Camera Status Section -->
+        <section class="camera-status">
+            <h2>Camera Status</h2>
+            <div class="camera-list">
+                <div class="camera">
+                    <h3>Camera 1</h3>
+                    <p>Status: <span class="live">Live</span></p>
+                </div>
+                <div class="camera">
+                    <h3>Camera 2</h3>
+                    <p>Status: <span class="idle">Idle</span></p>
+                </div>
+                <div class="camera">
+                    <h3>Camera 3</h3>
+                    <p>Status: <span class="down">Down</span></p>
+                </div>
+                <!-- More cameras as needed -->
+            </div>
+        </section>
+
+        <!-- Incident Alerts -->
+        <section class="incidents">
+            <h2>Recent Incident Reports</h2>
+            <!-- Incident Report Example 1 -->
+            <div class="incident">
+                <div>
+                    <h3>Incident ID: 00122</h3>
+                    <p><strong>Date:</strong> 2024-10-07</p>
+                    <p><strong>Location:</strong> Kankarbagh, Patna</p>
+                    <p><strong>Description:</strong> Triggered from camera 1</p>
+                </div>
+                <a href="/live-camera-feed/" class="live-camera-feed">See Recorded</a>
+            </div>
+
+            <!-- Incident Report Example 2 -->
+            <div class="incident">
+                <div>
+                    <h3>Incident ID: 00121</h3>
+                    <p><strong>Date:</strong> 2024-10-08</p>
+                    <p><strong>Location:</strong> Kankarbagh, Patna</p>
+                    <p><strong>Description:</strong> Triggered from camera 1</p>
+                </div>
+                <a href="/live-camera-feed/" class="live-camera-feed">See Recorded</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Targaryns. All rights reserved.</p>
+    </footer>
+</body>
+</html>
